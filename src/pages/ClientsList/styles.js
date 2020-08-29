@@ -9,27 +9,13 @@ const styles = StyleSheet.create({
   clientsList: {
     marginTop: -40,
     paddingHorizontal: 16,
-    paddingBottom: 16
+    marginBottom: 60
   },
 
   error: {
     fontSize: 18,
     color: 'red',
     alignSelf: 'center'
-  },
-
-  newClientButton: {
-    height: 60,
-    backgroundColor: '#1B262C',
-    alignItems: 'center',
-    justifyContent: 'center',
-    flexDirection: 'row'
-  },
-
-  newClientLabel: {
-    color: '#FFF',
-    fontSize: 30,
-    marginLeft: 10
   }
 });
 

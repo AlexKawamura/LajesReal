@@ -1,10 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { Text, View, FlatList, ActivityIndicator } from 'react-native';
-import { RectButton } from 'react-native-gesture-handler';
-import { AntDesign } from '@expo/vector-icons';
 
 import Header from '../../components/Header';
 import ClientItem from '../../components/ClientItem';
+import AddButton from '../../components/AddButton';
 
 import api from '../../services/api';
 
@@ -16,7 +15,7 @@ function ClientsList() {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    api.get('?nat=br&results=50').then(response => {
+    api.get('?nat=br&results=10').then(response => {
       const results = response.data.results;
 
       setClients(results);
@@ -45,11 +44,7 @@ function ClientsList() {
           />
       }
 
-      <RectButton style={styles.newClientButton}>
-        <AntDesign name="adduser" size={30} color="white" />
-
-        <Text style={styles.newClientLabel}>Novo Clientes</Text>
-      </RectButton>
+      <AddButton iconName={"adduser"} label={"Novo cliente"} />
     </View>
   );
 }
