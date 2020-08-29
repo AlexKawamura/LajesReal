@@ -2,6 +2,7 @@ import React from 'react';
 import { Text, View, Image, TouchableOpacity } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { BorderlessButton } from 'react-native-gesture-handler';
+import { AntDesign } from '@expo/vector-icons';
 
 import styles from './styles';
 
@@ -25,6 +26,8 @@ function ClientItem({ client }) {
             <Text style={styles.tel}>Cel: {client.cell}</Text>
             <Text style={styles.tel}>Tel: {client.phone}</Text>
           </View>
+
+          <AntDesign style={styles.iconRight} name="right" size={24} color="black" />
         </View>
       </BorderlessButton>
 
