@@ -1,12 +1,13 @@
 import { StatusBar } from 'expo-status-bar';
 import React from 'react';
 
-import ClientsListPage from './src/pages/ClientsListPage';
+import ClientsList from './src/pages/ClientsList';
+import AppStack from './src/routes/AppStack';
 
 export default function App() {
   return (
     <>
-      <ClientsListPage />
+      <AppStack />
       <StatusBar style="auto" />
     </>
   );
