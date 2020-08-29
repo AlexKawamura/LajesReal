@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Text, View, FlatList, ActivityIndicator } from 'react-native';
+import { RectButton } from 'react-native-gesture-handler';
+import { AntDesign } from '@expo/vector-icons';
 
 import Header from '../../components/Header';
 import ClientItem from '../../components/ClientItem';
@@ -42,7 +44,12 @@ function ClientsList() {
             keyExtractor={(item, index) => item.name.first+index }
           />
       }
-      
+
+      <RectButton style={styles.newClientButton}>
+        <AntDesign name="adduser" size={30} color="white" />
+
+        <Text style={styles.newClientLabel}>Novo Clientes</Text>
+      </RectButton>
     </View>
   );
 }
