@@ -6,13 +6,14 @@ const styles = StyleSheet.create({
     marginBottom: 10,
     borderWidth: 1,
     borderColor: '#E6E6F0',
-    borderRadius: 20,
+    borderRadius: 20
   },
 
   profile: {
+    padding: 15,
     flexDirection: 'row',
     alignItems: 'center',
-    padding: 15
+    justifyContent: 'space-between'
   },
 
   avatar: {
@@ -20,11 +21,11 @@ const styles = StyleSheet.create({
     height: 64,
     borderRadius: 32,
     borderWidth: 1,
-    borderColor: '#E6E6F0',
+    borderColor: '#E6E6F0'
   },
 
   profileInfo: {
-    marginLeft: 16
+    alignItems: 'center'
   },
 
   name: {
