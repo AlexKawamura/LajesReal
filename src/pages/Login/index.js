@@ -1,14 +1,16 @@
 import firebase from 'firebase';
+import { connect } from 'react-redux';
 import React, { useState } from 'react';
 import { useNavigation } from '@react-navigation/native';
-import { View, Text, TextInput, Button, ActivityIndicator, Alert } from 'react-native';
+import { View, Text, TextInput, Button, ActivityIndicator, KeyboardAvoidingView } from 'react-native';
 
 import FormRow from '../../components/FormRow';
+import { processLoginAction, registerUserAction } from '../../actions';
 
 import styles from './styles';
 
-function Login() {
-  const { navigate } = useNavigation();
+function Login(props) {
+  const { navigate, reset } = useNavigation();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [loading, setLoading] = useState(false);
@@ -33,10 +35,9 @@ function Login() {
   function processLogin() {
     setLoading(true);
 
-    firebase.auth()
-      .signInWithEmailAndPassword(email, password)
+    props.processLoginAction({email, password})
       .then(() => {
-        navigate('ClientsList')
+        props.navigation.replace("ClientsList");
       }).catch(error => {
         setMessage(getMessageByError(error.code));
       }).finally(() => {
@@ -44,14 +45,25 @@ function Login() {
       });
   }
 
+  function registerUser() {
+    props.registerUserAction({email, password})
+      .then(() => {
+        props.navigation.replace("ClientsList");
+      }).catch(error => {
+        setMessage(getMessageByError(error.code));
+      });
+  }
+
   function getMessageByError(code) {
     switch (code) {
-      case 'auth/user-not-found':
-        return 'E-mail inexistente';
-      case 'auth/wrong-password':
-        return 'Senha incorreta.';
+      case "auth/user-not-found":
+        return "E-mail inexistente";
+      case "auth/wrong-password":
+        return "Senha incorreta.";
+      case "auth/invalid-email":
+        return "E-mail inválido";
       default:
-        return 'Erro desconhecido';
+        return code;
     }
   }
 
@@ -72,7 +84,7 @@ function Login() {
   function renderMessage() {
     if (!message) {
       return null;
-    } else if (message === 'success') {
+    } else if (message === "success") {
       return (
         <Text style={styles.success}>Usuário criado com sucesso!</Text>
       );
@@ -81,31 +93,6 @@ function Login() {
     return (
       <Text style={styles.error}>{message}</Text>
     );
-  }
-
-  function registerUser() {
-    if (email && password) {
-      Alert.alert(
-        'Cadastrando conta de login',
-        `Deseja criar a conta?\nE-mail: ${email}\nSenha: ${password}`,
-        [{
-          text: 'Não',
-        }, {
-          text: 'Sim',
-          onPress: () => {
-            firebase.auth()
-              .createUserWithEmailAndPassword(email, password)
-              .then(setMessage('success'))
-              .catch(error => {
-                setMessage(getMessageByError(error.code))
-              });
-          },
-        }],
-        { cancelable: true }
-      );
-    } else {
-      setMessage('Os campos não foram preenchidos corretamento');
-    }
   }
 
   return (
@@ -118,7 +105,7 @@ function Login() {
           { renderMessage() }
         </View>
 
-        <FormRow label='E-mail:'>
+        <FormRow label="E-mail:">
           <TextInput
             style={styles.textInput}
             placeholder="example@email.com"
@@ -127,6 +114,8 @@ function Login() {
             onChangeText={ valor => {
               setEmail(valor);
             }}
+            keyboardType="email-address"
+            autoCapitalize="none"
           />
         </FormRow>
 
@@ -159,4 +148,4 @@ function Login() {
   );
 }
 
-export default Login;
+export default connect(null, { processLoginAction, registerUserAction })(Login);
