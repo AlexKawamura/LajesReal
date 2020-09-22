@@ -25,7 +25,7 @@ const styles = StyleSheet.create({
   },
 
   profileInfo: {
-    alignItems: 'center'
+    width: '60%'
   },
 
   name: {

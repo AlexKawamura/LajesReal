@@ -1,16 +1,16 @@
 import React from 'react';
 import { Text } from 'react-native';
-import { RectButton } from 'react-native-gesture-handler';
 import { AntDesign } from '@expo/vector-icons';
+import { RectButton } from 'react-native-gesture-handler';
 
 import styles from './styles';
 
-function AddButton({ iconName, label}) {
+function AddButton({ iconName, label, onNavigate}) {
   return (
-    <RectButton style={styles.newClientButton}>
+    <RectButton style={styles.newButton} onPress={() => {onNavigate()}}>
       <AntDesign name={iconName} size={30} color="white" />
 
-      <Text style={styles.newClientLabel}>{label}</Text>
+      <Text style={styles.newLabel}>{label}</Text>
     </RectButton>
   );
 }

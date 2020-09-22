@@ -24,8 +24,8 @@ const styles = StyleSheet.create({
   avatar: {
     marginTop: 15,
     marginBottom: 5,
-    width: 100,
-    height: 100,
+    width: 130,
+    height: 130,
     borderRadius: 50,
     borderWidth: 1,
     borderColor: '#E6E6F0',
@@ -33,11 +33,12 @@ const styles = StyleSheet.create({
 
   infos: {
     marginTop: 15,
-    alignItems: 'center'
+    alignItems: 'center',
   },
 
   name: {
     color: '#1B262C',
+    textAlign: 'center',
     fontSize: 25
   },
 
