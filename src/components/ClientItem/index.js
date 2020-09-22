@@ -8,8 +8,8 @@ import styles from './styles';
 
 function ClientItem({ client }) {
   const { navigate } = useNavigation();
-  const { thumbnail } = client.picture;
-  const fullName = client.name.first + ' ' + client.name.last;
+  // const { thumbnail } = client.picture;
+  // const fullName = client.name.first + ' ' + client.name.last;
 
   function handlerNavigateToClientDetail() {
     navigate('ClientDetail', client);
@@ -19,11 +19,11 @@ function ClientItem({ client }) {
     <View style={styles.container}>
       <BorderlessButton onPress={() => handlerNavigateToClientDetail()}>
         <View style={styles.profile}>
-          <Image source={{ uri: thumbnail}} style={styles.avatar} />
+          <Image source={{ uri: client.avatar }} style={styles.avatar} />
 
           <View style={styles.profileInfo}>
-            <Text style={styles.name}>{fullName}</Text>
-            <Text style={styles.tel}>Cel: {client.cell}</Text>
+            <Text style={styles.name}>{client.name}</Text>
+            {/* <Text style={styles.tel}>Cel: {client.cell}</Text> */}
             <Text style={styles.tel}>Tel: {client.phone}</Text>
           </View>
 

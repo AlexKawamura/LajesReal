@@ -3,29 +3,33 @@ import { View, Text, Image, ScrollView, Button } from 'react-native';
 
 import styles from './styles';
 import Header from '../../components/Header';
+import LongText from '../../components/LongText';
 
 function ClientDetail({route}) {
   const client = route.params;
-  const fullName = client.name.first + ' ' + client.name.last;
-  const { location } = client;
-  const { medium } = client.picture;
+  // const fullName = client.name.first + ' ' + client.name.last;
+  // const { location } = client;
+  // const { medium } = client.picture;
+  const label = "Descrição";
+  const content = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque gravida erat eget elit viverra efficitur. Quisque in euismod ex, pharetra mollis erat. Vivamus ultricies risus placerat diam tincidunt, sed tempus dui blandit. Donec non luctus nisi, at convallis est. Ut a pellentesque libero. Nullam non odio ullamcorper metus condimentum pretium vel et nibh. Praesent semper efficitur orci et lobortis. Nulla cursus cursus blandit."
 
   return (
       <View style={styles.container}>
-        <Header title={fullName} />
+        <Header title={client.name} />
 
         <ScrollView style={styles.clientsList}>
           <View style={styles.details}>
-                <Image source={{ uri: medium }} style={styles.avatar} />
+                <Image source={{ uri: client.avatar }} style={styles.avatar} />
                 <Button title='Alterar foto' />
 
                 <View style={styles.infos}>
-                  <Text style={styles.name}>{fullName}</Text>
-                  <Text style={styles.otherInfos}>{client.email}</Text>
-                  <Text style={styles.otherInfos}>{location.city + ' - ' + location.state}</Text>
-                  <Text style={styles.otherInfos}>{location.street.name + ' - ' + location.street.number}</Text>
-                  <Text style={styles.otherInfos}>{client.cell}</Text>
+                  <Text style={styles.name}>{client.name}</Text>
+                  {/* <Text style={styles.otherInfos}>{client.email}</Text> */}
+                  <Text style={styles.otherInfos}>{client.city + ' - ' + client.uf}</Text>
+                  <Text style={styles.otherInfos}>{client.address}</Text>
+                  {/* <Text style={styles.otherInfos}>{client.cell}</Text> */}
                   <Text style={styles.otherInfos}>{client.phone}</Text>
+                  <LongText label={label} content={content} />
                 </View>
           </View>
         </ScrollView>
