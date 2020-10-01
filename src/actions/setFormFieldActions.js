@@ -6,3 +6,10 @@ export const setField = (field, value) => {
     value
   }
 }
+
+export const EMPTY_FIELDS = 'EMPTY_FIELDS';
+export const emptyFields = () => {
+  return {
+    type: EMPTY_FIELDS,
+  }
+}

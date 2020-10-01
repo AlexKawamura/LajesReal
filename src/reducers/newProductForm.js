@@ -1,4 +1,4 @@
-import { SET_FIELD } from '../actions';
+import { EMPTY_FIELDS, SET_FIELD } from '../actions';
 
 const INITIAL_STATE = {
   productName: '',
@@ -14,9 +14,9 @@ export default function(state = INITIAL_STATE, action) {
       
       clonedState[action.field] = action.value;
 
-      console.log(action.field, action.value)
-
       return clonedState;
+    case EMPTY_FIELDS:
+      return INITIAL_STATE;
     default:
       return state;
   }
