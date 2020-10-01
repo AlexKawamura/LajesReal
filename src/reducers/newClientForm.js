@@ -1,10 +1,7 @@
 import { SET_FIELD } from '../actions';
 
 const INITIAL_STATE = {
-  productName: '',
-  stored: 0,
-  price: '',
-  description: ''
+  name: '',
 }
 
 export default function(state = INITIAL_STATE, action) {
