@@ -8,7 +8,6 @@ const styles = StyleSheet.create({
 
   formContainer: {
     marginTop: 10,
-    marginBottom: 40,
     paddingHorizontal: 16,
     paddingBottom: 16
   },

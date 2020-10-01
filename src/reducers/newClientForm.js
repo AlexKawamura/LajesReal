@@ -11,8 +11,6 @@ export default function(state = INITIAL_STATE, action) {
       
       clonedState[action.field] = action.value;
 
-      console.log(action.field, action.value)
-
       return clonedState;
     default:
       return state;
