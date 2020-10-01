@@ -1,18 +1,23 @@
-import React from 'react';
 import { connect } from 'react-redux';
+import React, { useState } from 'react';
 import Slider from '@react-native-community/slider';
-import { View, Text, TextInput, Button, ScrollView } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
+import { View, Text, TextInput, Button, ActivityIndicator, Alert } from 'react-native';
+
+import FormRow from '../../components/FormRow';
+import FormContainer from '../../components/FormContainer';
 
 import { setField, saveProduct } from '../../actions';
 
 import styles from './styles';
-import FormRow from '../../components/FormRow';
 
 function ProductRegister({productForm, setField, saveProduct}) {
+  const { goBack } = useNavigation();
+  const [loading, setLoading] = useState(false);
+
   return (
     <View style={styles.container}>
-      <ScrollView style={styles.formContainer}>
-        <View style={styles.form}>
+      <FormContainer>
         <FormRow label="Nome:">
             <TextInput
               style={styles.textInput}
@@ -60,16 +65,26 @@ function ProductRegister({productForm, setField, saveProduct}) {
           </FormRow>
 
           <View style={styles.loginButton}>
-            <Button
-              title="Cadastrar"
-              color="#1B262C"
-              onPress={() => {
-                saveProduct(productForm);
-              }}
-            />
+            {loading
+              ? <ActivityIndicator /> 
+              : <Button
+                title="Cadastrar"
+                color="#1B262C"
+                onPress={async () => {
+                  setLoading(true);
+                  try{
+                    await saveProduct(productForm);
+                    goBack();
+                  } catch (error) {
+                    Alert.alert('Error', error.message);
+                  } finally {
+                    setLoading(false);
+                  }
+                }}
+              />
+            }
           </View>
-        </View>
-      </ScrollView>
+        </FormContainer>
     </View>
   );
 }
