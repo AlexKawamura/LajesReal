@@ -8,12 +8,13 @@ const styles = StyleSheet.create({
 
   formContainer: {
     marginTop: 10,
+    marginBottom: 40,
     paddingHorizontal: 16,
     paddingBottom: 16
   },
 
   form: {
-    paddingTop: 10,
+    paddingTop: 20,
     backgroundColor: '#FFF',
     borderWidth: 1,
     borderColor: '#E6E6F0',

@@ -1,24 +1,24 @@
 import React from 'react';
-import { useNavigation } from '@react-navigation/native';
 import { View, ScrollView } from 'react-native';
+import { useNavigation } from '@react-navigation/native'
 
 import PurchaseItem from '../../components/PurchaseItem';
 import AddButton from '../../components/AddButton';
 
 import styles from './styles';
 
-function PurchaseList() {
+function ProductList() {
   const { navigate } = useNavigation();
 
   return(
     <View style={styles.container}>
       <ScrollView style={styles.purchaseList}>
-        <PurchaseItem onNavigate={() => navigate("PurchaseEdit")} />
+        <PurchaseItem onNavigate={() => navigate("ProductEdit")} />
       </ScrollView>
 
-      <AddButton iconName={"addfile"} label={"Novo pedido"} onNavigate={() => navigate("PurchaseRegister")} />
+      <AddButton iconName={"shoppingcart"} label={"Novo produto"} onNavigate={() => {navigate("ProductRegister")}} />
     </View>
   );
 }
 
-export default PurchaseList;
+export default ProductList;

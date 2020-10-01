@@ -4,11 +4,11 @@ import { BorderlessButton } from 'react-native-gesture-handler';
 
 import styles from './styles';
 
-function PurchaseItem({ onNavigate }) {
+function PurchaseItem() {
 
   return (
     <View style={styles.container}>
-      <BorderlessButton onPress={() => onNavigate()}>
+      <BorderlessButton>
             <View style={styles.purchaseInfos}>
               <View style={styles.numero}>
                 <Text style={styles.label}>0000000</Text>

@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react';
 import { useNavigation } from '@react-navigation/native';
 import { Text, View, FlatList, ActivityIndicator } from 'react-native';
 
-import Header from '../../components/Header';
 import ClientItem from '../../components/ClientItem';
 import AddButton from '../../components/AddButton';
 
@@ -22,7 +21,6 @@ function ClientsList() {
 
   return(
     <View style={styles.container}>
-      <Header title={'Lista de Clientes'} />
       {
         loading ? <ActivityIndicator size="large" color="#3282B8" />
         : error ? <Text style={styles.error}>Erro ao carregar lista de contatos...</Text>

@@ -9,7 +9,7 @@ import { processLoginAction, registerUserAction } from '../../actions';
 
 import styles from './styles';
 
-function Login(props) {
+function Login(props, { navigation }) {
   const { navigate, reset } = useNavigation();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -37,7 +37,7 @@ function Login(props) {
 
     props.processLoginAction({email, password})
       .then(() => {
-        props.navigation.replace("ClientsList");
+        props.navigation.replace("TabScreen");
       }).catch(error => {
         setMessage(getMessageByError(error.code));
       }).finally(() => {

@@ -6,8 +6,8 @@ const styles = StyleSheet.create({
     backgroundColor: '#E2DFE2',
   },
 
-  clientsList: {
-    marginTop: -40,
+  detailsContainer: {
+    marginTop: 10,
     paddingHorizontal: 16,
     paddingBottom: 16
   },

@@ -2,7 +2,6 @@ import React from 'react';
 import { View, Text, Image, ScrollView, Button } from 'react-native';
 
 import styles from './styles';
-import Header from '../../components/Header';
 import LongText from '../../components/LongText';
 
 function ClientDetail({route}) {
@@ -15,9 +14,7 @@ function ClientDetail({route}) {
 
   return (
       <View style={styles.container}>
-        <Header title={client.name} />
-
-        <ScrollView style={styles.clientsList}>
+        <ScrollView style={styles.detailsContainer}>
           <View style={styles.details}>
                 <Image source={{ uri: client.avatar }} style={styles.avatar} />
                 <Button title='Alterar foto' />

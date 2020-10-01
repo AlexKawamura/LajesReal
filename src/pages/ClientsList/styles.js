@@ -7,7 +7,7 @@ const styles = StyleSheet.create({
   },
 
   clientsList: {
-    marginTop: -40,
+    marginTop: 10,
     paddingHorizontal: 16,
     marginBottom: 60
   },
