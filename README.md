@@ -20,3 +20,6 @@ https://www.figma.com/file/m9PyGWSaEC9t1keLk6iGQh/LajesReal?node-id=0%3A1
 - Redux;
 - Firebase;
 
+## Trabalhos Futuros
+- Disponibilizar a aplicação para desktop.
+
