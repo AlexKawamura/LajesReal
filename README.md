@@ -2,6 +2,7 @@
 
 ## Sobre
 O aplicativo foi desenvolvido pensando na emição de pedidos de compra de uma empreiteira. Em que um usuário emite um pedido de compra de materiais de contrução para a obra de clientes.
+
 A princípio foi desenvolvido voltado para dispositivos móveis, com o intuito de facilitar a realização de pedidos durante a inspeção de uma obra pelo mestre de obras.
 
 ## Protótipo
