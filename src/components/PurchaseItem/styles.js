@@ -6,30 +6,30 @@ const styles = StyleSheet.create({
     marginBottom: 10,
     borderWidth: 1,
     borderColor: '#E6E6F0',
-    borderRadius: 20,
+    borderRadius: 20
   },
 
-  purchaseInfos: {
-    marginLeft: 16,
-    padding: 15
-  },
-
-  info: {
+  infosContainer: {
+    padding: 15,
+    paddingLeft: 25,
+    flexDirection: 'row',
     alignItems: 'center',
-    flexDirection: 'row'
+    justifyContent: 'space-between'
   },
 
-  numero: {
-    alignItems:'center'
+  infos: {
+    width: '60%'
   },
 
-  label: {
+  id: {
     color: '#1B262C',
-    fontSize: 20,
-    fontWeight: 'bold'
+    fontSize: 20
   },
 
-
-})
+  text: {
+    color: '#1B262C',
+    fontSize: 15
+  },
+});
 
 export default styles;

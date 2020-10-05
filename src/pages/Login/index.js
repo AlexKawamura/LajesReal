@@ -1,16 +1,14 @@
 import firebase from 'firebase';
 import { connect } from 'react-redux';
 import React, { useState } from 'react';
-import { useNavigation } from '@react-navigation/native';
-import { View, Text, TextInput, Button, ActivityIndicator, KeyboardAvoidingView } from 'react-native';
+import { View, Text, TextInput, Button, ActivityIndicator } from 'react-native';
 
 import FormRow from '../../components/FormRow';
 import { processLoginAction, registerUserAction } from '../../actions';
 
 import styles from './styles';
 
-function Login(props, { navigation }) {
-  const { navigate, reset } = useNavigation();
+function Login(props) {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [loading, setLoading] = useState(false);

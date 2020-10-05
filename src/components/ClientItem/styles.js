@@ -48,6 +48,6 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     backgroundColor: '#FFF'
   }
-})
+});
 
 export default styles;

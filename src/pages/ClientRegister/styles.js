@@ -6,21 +6,6 @@ const styles = StyleSheet.create({
     backgroundColor: '#E2DFE2',
   },
 
-  formContainer: {
-    marginTop: 10,
-    paddingHorizontal: 16,
-    paddingBottom: 16
-  },
-
-  form: {
-    paddingTop: 10,
-    backgroundColor: '#FFF',
-    borderWidth: 1,
-    borderColor: '#E6E6F0',
-    borderRadius: 20,
-    paddingBottom: 20,
-  },
-
   addAvatar: {
     alignItems: 'center',
     marginBottom: 10

@@ -1,15 +1,15 @@
 import React from 'react';
-import { View, TextInput, Button, ScrollView } from 'react-native';
+import { View, TextInput, Button } from 'react-native';
+
+import FormRow from '../../components/FormRow';
+import FormContainer from '../../components/FormContainer';
 
 import styles from './styles';
-import Header from '../../components/Header';
-import FormRow from '../../components/FormRow';
 
 function PurchaseRegister() {
   return (
     <View style={styles.container}>
-      <ScrollView style={styles.formContainer}>
-        <View style={styles.form}>
+      <FormContainer>
           <FormRow label="Nº. do Pedido:">
             <TextInput
               style={styles.textInput}
@@ -32,14 +32,13 @@ function PurchaseRegister() {
             />
           </FormRow>
 
-          <View style={styles.loginButton}>
+          <View style={styles.registerButton}>
             <Button
               title="Cadastrar"
               color="#1B262C"
             />
           </View>
-        </View>
-      </ScrollView>
+      </FormContainer>
     </View>
   );
 }

@@ -64,7 +64,7 @@ function ProductRegister({productForm, setField, saveProduct}) {
             />
           </FormRow>
 
-          <View style={styles.loginButton}>
+          <View style={styles.registerButton}>
             {loading
               ? <ActivityIndicator /> 
               : <Button

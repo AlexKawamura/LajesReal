@@ -6,19 +6,8 @@ const styles = StyleSheet.create({
     backgroundColor: '#E2DFE2',
   },
 
-  detailsContainer: {
-    marginTop: 10,
-    paddingHorizontal: 16,
-    paddingBottom: 16
-  },
-
   details: {
     alignItems: 'center',
-    backgroundColor: '#FFF',
-    borderWidth: 1,
-    borderColor: '#E6E6F0',
-    borderRadius: 20,
-    paddingBottom: 20
   },
 
   avatar: {

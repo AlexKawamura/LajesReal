@@ -6,7 +6,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#BBE1FA',
   },
 
-  purchaseList: {
+  productList: {
     marginTop: 10,
     paddingHorizontal: 16,
     marginBottom: 60

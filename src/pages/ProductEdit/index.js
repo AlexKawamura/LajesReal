@@ -1,16 +1,16 @@
 import React from 'react';
 import { Ionicons } from '@expo/vector-icons'; 
-import { View, Text, ScrollView, TextInput, TouchableOpacity } from 'react-native';
+import { View, Text, TextInput, TouchableOpacity } from 'react-native';
+
+import FormRow from '../../components/FormRow';
+import FormContainer from '../../components/FormContainer';
 
 import styles from './styles';
-import FormRow from '../../components/FormRow';
 
 function ProductEdit() {
   return (
       <View style={styles.container}>
-        <ScrollView style={styles.formContainer}>
-        <View style={styles.form}>
-
+        <FormContainer>
           <FormRow label="Nome:">
             <TextInput style={styles.textInput} />
           </FormRow>
@@ -43,8 +43,7 @@ function ProductEdit() {
               <Ionicons name="md-trash" size={24} color="#1B262C" />
             </TouchableOpacity>
           </View>
-        </View>
-      </ScrollView>
+        </FormContainer>
       </View>
   );
 }

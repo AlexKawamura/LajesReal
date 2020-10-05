@@ -10,12 +10,6 @@ const styles = StyleSheet.create({
     marginTop: 10,
     paddingHorizontal: 16,
     marginBottom: 60
-  },
-
-  error: {
-    fontSize: 18,
-    color: 'red',
-    alignSelf: 'center'
   }
 });
 

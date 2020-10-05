@@ -1,9 +1,10 @@
 import React from 'react';
-import { View, ScrollView } from 'react-native';
+import { View, FlatList } from 'react-native';
 import { useNavigation } from '@react-navigation/native'
 
-import PurchaseItem from '../../components/PurchaseItem';
 import AddButton from '../../components/AddButton';
+
+import products from '../../../products.json';
 
 import styles from './styles';
 
@@ -12,9 +13,6 @@ function ProductList() {
 
   return(
     <View style={styles.container}>
-      <ScrollView style={styles.purchaseList}>
-        <PurchaseItem onNavigate={() => navigate("ProductEdit")} />
-      </ScrollView>
 
       <AddButton iconName={"shoppingcart"} label={"Novo produto"} onNavigate={() => {navigate("ProductRegister")}} />
     </View>
