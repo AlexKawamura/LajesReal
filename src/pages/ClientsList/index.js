@@ -28,7 +28,7 @@ function ClientsList() {
       <AddButton
         iconName={"adduser"}
         label={"Novo cliente"}
-        onNavigate={() => {navigate("ClientRegister")}}
+        onNavigate={() => navigate("ClientRegister")}
       />
     </View>
   );

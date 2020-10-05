@@ -7,7 +7,7 @@ import styles from './styles';
 
 function AddButton({ iconName, label, onNavigate}) {
   return (
-    <RectButton style={styles.newButton} onPress={() => {onNavigate()}}>
+    <RectButton style={styles.newButton} onPress={() => onNavigate()}>
       <AntDesign name={iconName} size={30} color="white" />
 
       <Text style={styles.newLabel}>{label}</Text>
