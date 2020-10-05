@@ -6,7 +6,23 @@
     "phone": "00999999999",
     "address": "Av. Alberto Carazzai, 777",
     "city": "Cornélio Procópio",
-    "uf": "PR"
+    "uf": "PR",
+    "purchases": [
+      {
+        "id": 1,
+        "product": 
+          {
+            "id": 1,
+            "productName": "Produto 1",
+            "stored": 50,
+            "price": 150,
+            "description": "Descrição do produto",
+            "pictureURL": "https://avatars1.githubusercontent.com/u/22474655?s=460&u=b14af544d098b4ada62f67feace43d51e7a7a1ca&v=4"
+          },
+        "amount": 2,
+        "total": 300
+      }
+    ]
   },
   {
     "cpf": "25504955009",
