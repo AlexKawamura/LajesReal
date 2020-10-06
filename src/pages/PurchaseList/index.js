@@ -23,7 +23,7 @@ function PurchaseList({route}) {
             return <PurchaseItem item={item} onNavigate={() => navigate('PurchaseEdit')} />
           }
         }
-        keyExtractor={(item) => item.id }
+        keyExtractor={(item) => item.id.toString() }
       />
 
       <AddButton iconName={"addfile"} label={"Novo pedido"} onNavigate={() => navigate("PurchaseRegister")} />
