@@ -1,7 +1,7 @@
 import { StyleSheet } from 'react-native';
 
 const styles = StyleSheet.create({
-  newButton: {
+  addButton: {
     height: 60,
     width: '100%',
     backgroundColor: '#1B262C',
@@ -12,7 +12,7 @@ const styles = StyleSheet.create({
     bottom: 0
   },
 
-  newLabel: {
+  text: {
     color: '#FFF',
     fontSize: 30,
     marginLeft: 10
