@@ -5,6 +5,38 @@
     "stored": 50,
     "price": 150,
     "description": "Descrição do produto",
-    "pictureURL": "https://avatars1.githubusercontent.com/u/22474655?s=460&u=b14af544d098b4ada62f67feace43d51e7a7a1ca&v=4"
+    "pictureURL": "https://cdn.leroymerlin.com.br/products/laje_pre_moldada_com_lajota_ceramica_4,5m_ivemar_89071192_90c1_600x600.jpg"
+  },
+  {
+    "id": 2,
+    "productName": "Produto 2",
+    "stored": 50,
+    "price": 150,
+    "description": "Descrição do produto",
+    "pictureURL": "https://cdn.leroymerlin.com.br/products/laje_pre_moldada_com_lajota_ceramica_4,5m_ivemar_89071192_90c1_600x600.jpg"
+  },
+  {
+    "id": 3,
+    "productName": "Produto 3",
+    "stored": 50,
+    "price": 150,
+    "description": "Descrição do produto",
+    "pictureURL": "https://cdn.leroymerlin.com.br/products/laje_pre_moldada_com_lajota_ceramica_4,5m_ivemar_89071192_90c1_600x600.jpg"
+  },
+  {
+    "id": 4,
+    "productName": "Produto 4",
+    "stored": 50,
+    "price": 150,
+    "description": "Descrição do produto",
+    "pictureURL": "https://cdn.leroymerlin.com.br/products/laje_pre_moldada_com_lajota_ceramica_4,5m_ivemar_89071192_90c1_600x600.jpg"
+  },
+  {
+    "id": 5,
+    "productName": "Produto 5",
+    "stored": 50,
+    "price": 150,
+    "description": "Descrição do produto",
+    "pictureURL": "https://cdn.leroymerlin.com.br/products/laje_pre_moldada_com_lajota_ceramica_4,5m_ivemar_89071192_90c1_600x600.jpg"
   }
 ]
