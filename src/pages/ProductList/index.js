@@ -1,15 +1,25 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
-import { View, FlatList } from 'react-native';
+import { View, FlatList, ActivityIndicator } from 'react-native';
 import { useNavigation } from '@react-navigation/native'
 
 import AddButton from '../../components/AddButton';
 import ProductCard from '../../components/ProductCard';
 
+import { watchProducts } from '../../actions';
+
 import styles from './styles';
 
-function ProductList({ products }) {
+function ProductList({ products, watchProducts }) {
   const { navigate } = useNavigation();
+
+  useEffect(() => {
+    watchProducts();
+  }, [])
+
+  if (products === null) {
+    return <ActivityIndicator />
+  }
 
   return(
     <View style={styles.container}>
@@ -18,7 +28,7 @@ function ProductList({ products }) {
         data={products}
         renderItem={({item}) => {
           return (
-            <ProductCard product={item} onNavigate={() => navigate('ProductEdit')} />
+            <ProductCard product={item} onNavigate={() => navigate('ProductEdit', {editProduct: item})} />
           );
         }}
         keyExtractor={item => item.id.toString()}
@@ -31,9 +41,23 @@ function ProductList({ products }) {
 }
 
 const mapStateToProps = state => {
-  return {
-    products: state.products
+  const { products } = state;
+
+  if (!products) {
+    return {products};
   }
+
+  const keys = Object.keys(products);
+
+  const productsId = keys.map(key => {
+    return {...products[key], id: key}
+  });
+
+  return {products: productsId};
 }
 
-export default connect(mapStateToProps)(ProductList);
+const mapDispatchToProps = {
+  watchProducts
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(ProductList);

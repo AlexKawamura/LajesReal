@@ -1,7 +1,10 @@
-import products from '../../products.json';
+import { SET_PRODUCTS } from '../actions';
 
-const INITAL_STATE = products;
-
-export default function(state = INITAL_STATE, action) {
-  return state;
+export default function(state = null, action) {
+  switch(action.type) {
+    case SET_PRODUCTS:
+      return action.products;
+    default:
+        return state;
+  }
 }

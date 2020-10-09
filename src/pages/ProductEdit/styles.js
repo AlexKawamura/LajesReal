@@ -3,7 +3,7 @@ import { StyleSheet } from 'react-native';
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#E2DFE2',
+    backgroundColor: '#BBE1FA',
   },
 
   textInput: {
