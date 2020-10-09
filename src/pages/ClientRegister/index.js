@@ -1,7 +1,8 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { connect } from 'react-redux';
-import { FontAwesome } from '@expo/vector-icons'; 
-import { View, TextInput, Button, Image } from 'react-native';
+import { FontAwesome } from '@expo/vector-icons';
+import { useNavigation } from '@react-navigation/native';
+import { View, TextInput, Button, Image, ActivityIndicator } from 'react-native';
 
 import { setField, saveClient } from '../../actions';
 
@@ -11,6 +12,9 @@ import FormContainer from '../../components/FormContainer';
 import styles from './styles';
 
 function ClientRegister({clientForm, setField, saveClient}) {
+  const { goBack } = useNavigation();
+  const [loading, setLoading] = useState(false);
+
   return (
     <View style={styles.container}>
       <FormContainer>
@@ -77,13 +81,24 @@ function ClientRegister({clientForm, setField, saveClient}) {
         </View>
 
         <View style={styles.loginButton}>
-          <Button
-            title="Cadastrar"
-            color="#1B262C"
-            onPress={() => {
-              saveClient(clientForm);
-            }}
-          />
+        {loading
+              ? <ActivityIndicator /> 
+              : <Button
+                title="Cadastrar"
+                color="#1B262C"
+                onPress={async () => {
+                  setLoading(true);
+                  try {
+                    await saveClient(clientForm);
+                    goBack();
+                  } catch (error) {
+                    Alert.alert('Error', error.message);
+                  } finally {
+                    setLoading(false);
+                  }
+                }}
+              />
+            }
         </View>
       </FormContainer>
     </View>
