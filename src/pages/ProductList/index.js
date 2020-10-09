@@ -28,7 +28,7 @@ function ProductList({ products, watchProducts }) {
         data={products}
         renderItem={({item}) => {
           return (
-            <ProductCard product={item} onNavigate={() => navigate('ProductEdit', {editProduct: item})} />
+            <ProductCard product={item} onNavigate={() => navigate('ProductDetail', item)} />
           );
         }}
         keyExtractor={item => item.id.toString()}

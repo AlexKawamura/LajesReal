@@ -11,7 +11,7 @@ function ClientItem({ client }) {
 
   return (
     <View style={styles.container}>
-      <BorderlessButton onPress={() => navigate('ClientDetail', client)}>
+      <BorderlessButton onPress={() => navigate('ClientEdit', client)}>
         <View style={styles.profile}>
           <Image source={{ uri: client.avatar }} style={styles.avatar} />
 
