@@ -3,6 +3,7 @@ import { StyleSheet } from 'react-native';
 const styles = StyleSheet.create({
   formContainer: {
     marginTop: 10,
+    marginBottom: 10,
     paddingHorizontal: 16,
     paddingBottom: 16
   },
