@@ -7,33 +7,48 @@ const styles = StyleSheet.create({
   },
 
   details: {
-    alignItems: 'center',
+    paddingRight: 20,
+    paddingLeft: 20
   },
 
   avatar: {
-    marginTop: 15,
-    marginBottom: 5,
     width: 130,
     height: 130,
     borderRadius: 50,
     borderWidth: 1,
     borderColor: '#E6E6F0',
+    alignSelf: 'center'
   },
 
   infos: {
-    marginTop: 15,
-    alignItems: 'center',
+    marginTop: 15
+  },
+
+  infoLine: {
+    flexDirection: 'row'
   },
 
   name: {
     color: '#1B262C',
     textAlign: 'center',
-    fontSize: 25
+    fontSize: 25,
+    marginBottom: 15
   },
 
-  otherInfos: {
+  label: {
+    fontWeight: 'bold',
+    fontSize: 16,
+    paddingBottom: 5
+  },
+
+  info: {
     color: '#1B262C',
-    fontSize: 15
+    fontSize: 16,
+    paddingBottom: 5
+  },
+
+  editButton: {
+    marginTop: 15
   }
 })
 
