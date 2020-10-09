@@ -15,7 +15,7 @@ function ProductList({ products, watchProducts }) {
 
   useEffect(() => {
     watchProducts();
-  }, [])
+  }, []);
 
   if (products === null) {
     return <ActivityIndicator />

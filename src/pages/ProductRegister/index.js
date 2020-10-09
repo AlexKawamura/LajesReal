@@ -72,7 +72,7 @@ function ProductRegister({productForm, setField, saveProduct}) {
                 color="#1B262C"
                 onPress={async () => {
                   setLoading(true);
-                  try{
+                  try {
                     await saveProduct(productForm);
                     goBack();
                   } catch (error) {
