@@ -1,15 +1,14 @@
 import React from 'react';
-import { View, FlatList, Text } from 'react-native';
+import { connect } from 'react-redux';
+import { View, FlatList } from 'react-native';
 import { useNavigation } from '@react-navigation/native'
 
 import AddButton from '../../components/AddButton';
 import ProductCard from '../../components/ProductCard';
 
-import products from '../../../products.json';
-
 import styles from './styles';
 
-function ProductList() {
+function ProductList({ products }) {
   const { navigate } = useNavigation();
 
   return(
@@ -31,4 +30,10 @@ function ProductList() {
   );
 }
 
-export default ProductList;
+const mapStateToProps = state => {
+  return {
+    products: state.products,
+  }
+}
+
+export default connect(mapStateToProps)(ProductList);
