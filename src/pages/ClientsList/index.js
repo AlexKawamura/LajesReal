@@ -1,15 +1,14 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import { View, FlatList } from 'react-native';
 import { useNavigation } from '@react-navigation/native'
 
 import ClientItem from '../../components/ClientItem';
 import AddButton from '../../components/AddButton';
 
-import clients from '../../../clients.json';
-
 import styles from './styles';
 
-function ClientsList() {
+function ClientsList({ clients }) {
   const { navigate } = useNavigation();
 
   return(
@@ -34,4 +33,10 @@ function ClientsList() {
   );
 }
 
-export default ClientsList;
+const mapStateToProps = state => {
+  return {
+    clients: state.clients
+  }
+}
+
+export default connect(mapStateToProps)(ClientsList);

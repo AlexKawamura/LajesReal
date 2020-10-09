@@ -32,7 +32,7 @@ function ProductList({ products }) {
 
 const mapStateToProps = state => {
   return {
-    products: state.products,
+    products: state.products
   }
 }
 

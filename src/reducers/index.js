@@ -1,13 +1,15 @@
 import { combineReducers } from 'redux';
 
 import userReducer from './userReducer';
-import newProductForm from './newProductForm';
+import clientsReducer from './clientsReducer';
 import newClientForm from './newClientForm';
 import productsReducer from './productsReducer';
+import newProductForm from './newProductForm';
 
 export default combineReducers({
   user: userReducer,
-  productForm: newProductForm,
+  clients: clientsReducer,
   clientForm: newClientForm,
   products: productsReducer,
+  productForm: newProductForm,
 });
