@@ -1,15 +1,25 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
-import { View, FlatList } from 'react-native';
+import { View, FlatList, ActivityIndicator } from 'react-native';
 import { useNavigation } from '@react-navigation/native'
 
 import ClientItem from '../../components/ClientItem';
 import AddButton from '../../components/AddButton';
 
+import { watchClients } from '../../actions';
+
 import styles from './styles';
 
-function ClientsList({ clients }) {
+function ClientsList({ clients, watchClients }) {
   const { navigate } = useNavigation();
+
+  useEffect(() => {
+    watchClients();
+  }, []);
+
+  if (clients === null) {
+    return <ActivityIndicator />
+  }
 
   return(
     <View style={styles.container}>
@@ -34,9 +44,23 @@ function ClientsList({ clients }) {
 }
 
 const mapStateToProps = state => {
-  return {
-    clients: state.clients
+  const { clients } = state;
+
+  if (!clients) {
+    return {clients};
   }
+
+  const keys = Object.keys(clients);
+
+  const clientsId = keys.map(key => {
+    return {...clients[key], id: key}
+  });
+
+  return {clients: clientsId};
 }
 
-export default connect(mapStateToProps)(ClientsList);
+const mapDispatchToProps = {
+  watchClients
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(ClientsList);

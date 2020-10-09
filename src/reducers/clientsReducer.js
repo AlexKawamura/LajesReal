@@ -1,7 +1,10 @@
-import clients from '../../clients.json';
+import { SET_CLIENTS } from '../actions';
 
-const INITIAL_STATE = clients;
-
-export default function(state = INITIAL_STATE, action) {
-  return state;
+export default function(state = null, action) {
+  switch(action.type) {
+    case SET_CLIENTS:
+      return action.clients;
+    default:
+        return state;
+  }
 }

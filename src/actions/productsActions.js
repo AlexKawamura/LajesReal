@@ -10,7 +10,6 @@ export const watchProducts = () => {
   return dispatch => {
     firebase.database().ref('/products')
     .on('value', snapshot => {
-      console.log(snapshot.val())
       const products = snapshot.val();
       const action = setProducts(products);
 
