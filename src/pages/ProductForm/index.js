@@ -1,23 +1,76 @@
 import { connect } from 'react-redux';
-import React, { useState } from 'react';
+import { Ionicons } from '@expo/vector-icons';
+import React, { useState, useEffect } from 'react';
 import Slider from '@react-native-community/slider';
 import { useNavigation } from '@react-navigation/native';
-import { View, Text, TextInput, Button, ActivityIndicator, Alert } from 'react-native';
+import { View, Text, Image, TextInput, Button, ActivityIndicator, Alert, TouchableOpacity } from 'react-native';
 
 import FormRow from '../../components/FormRow';
 import FormContainer from '../../components/FormContainer';
 
-import { setField, saveProduct } from '../../actions';
+import { setField, saveProduct, resetForm, setAllFields } from '../../actions';
 
 import styles from './styles';
 
-function ProductRegister({productForm, setField, saveProduct}) {
+function ProductRegister({
+  route,
+  productForm,
+  setField,
+  saveProduct,
+  resetForm,
+  setAllFields
+}) {
   const { goBack } = useNavigation();
   const [loading, setLoading] = useState(false);
+
+  useEffect(() => {
+    if(route.params) {
+      setAllFields(route.params);
+    } else {
+      resetForm();
+    }
+  }, []);
+
+  function renderButton() {
+    if(route.params) {
+      return (
+        <View style={styles.groupButton}>
+            <TouchableOpacity style={styles.buttonRegister}>
+              <Text style={styles.textButton}>Salvar</Text>
+            </TouchableOpacity>
+            <TouchableOpacity style={styles.buttonDelete}>
+              <Ionicons name="md-trash" size={24} color="#1B262C" />
+            </TouchableOpacity>
+          </View>
+      );
+    }
+    
+    return (
+      <Button
+        title="Cadastrar"
+        color="#1B262C"
+        onPress={async () => {
+          setLoading(true);
+          try {
+            await saveProduct(productForm);
+            goBack();
+          } catch (error) {
+            Alert.alert('Error', error.message);
+          } finally {
+            setLoading(false);
+          }
+        }}
+      />
+    );
+  }
 
   return (
     <View style={styles.container}>
       <FormContainer>
+        <Image source={{ uri: productForm.pictureURL }} style={styles.picture} />
+        <View style={styles.alterPictureButton}>
+          <Button title='Alterar foto' />
+        </View>
         <FormRow label="Nome:">
             <TextInput
               style={styles.textInput}
@@ -44,7 +97,7 @@ function ProductRegister({productForm, setField, saveProduct}) {
           <FormRow label="Preço/unid.:">
             <TextInput
               style={styles.textInput}
-              value={productForm.price}
+              value={String(productForm.price)}
               keyboardType="numeric"
               onChangeText={value => {
                 setField('price', value);
@@ -65,24 +118,7 @@ function ProductRegister({productForm, setField, saveProduct}) {
           </FormRow>
 
           <View style={styles.registerButton}>
-            {loading
-              ? <ActivityIndicator /> 
-              : <Button
-                title="Cadastrar"
-                color="#1B262C"
-                onPress={async () => {
-                  setLoading(true);
-                  try {
-                    await saveProduct(productForm);
-                    goBack();
-                  } catch (error) {
-                    Alert.alert('Error', error.message);
-                  } finally {
-                    setLoading(false);
-                  }
-                }}
-              />
-            }
+            { loading ? <ActivityIndicator /> : renderButton() }
           </View>
         </FormContainer>
     </View>
@@ -97,7 +133,9 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = {
   setField,
-  saveProduct
+  saveProduct,
+  resetForm,
+  setAllFields
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(ProductRegister);

@@ -5,16 +5,12 @@ import { createMaterialTopTabNavigator } from '@react-navigation/material-top-ta
 
 import Login from '../pages/Login';
 import ClientsList from '../pages/ClientsList';
-import ClientDetail from '../pages/ClientDetail';
-import ClientEdit from '../pages/ClientEdit';
-import ClientRegister from '../pages/ClientRegister';
+import ClientForm from '../pages/ClientForm';
 import PurchaseList from '../pages/PurchaseList';
-import PurchaseEdit from '../pages/PurchaseEdit';
 import PurchaseRegister from '../pages/PurchaseRegister';
-import ProductEdit from '../pages/ProductEdit';
 import ProductList from '../pages/ProductList';
 import ProductDetail from '../pages/ProductDetail';
-import ProductRegister from '../pages/ProductRegister';
+import ProductForm from '../pages/ProductForm';
 
 const Tab = createMaterialTopTabNavigator();
 const LoginStack = createStackNavigator();
@@ -56,11 +52,8 @@ function ClientStackNavigator() {
   return (
     <ClientStack.Navigator>
       <ClientStack.Screen name="ClientsList" component={ClientsList} />
-      <ClientStack.Screen name="ClientDetail" component={ClientDetail} />
-      <ClientStack.Screen name="ClientEdit" component={ClientEdit} />
-      <ClientStack.Screen name="ClientRegister" component={ClientRegister} />
+      <ClientStack.Screen name="ClientForm" component={ClientForm} />
       <ClientStack.Screen name="PurchaseList" component={PurchaseList} />
-      <ClientStack.Screen name="PurchaseEdit" component={PurchaseEdit} />
       <ClientStack.Screen name="PurchaseRegister" component={PurchaseRegister} />
     </ClientStack.Navigator>
   );
@@ -70,9 +63,8 @@ function ProductStackNavigator() {
   return (
     <ProductStack.Navigator>
       <ProductStack.Screen name="ProductList" component={ProductList} />
-      <ProductStack.Screen name="ProductEdit" component={ProductEdit} />
       <ProductStack.Screen name="ProductDetail" component={ProductDetail} />
-      <ProductStack.Screen name="ProductRegister" component={ProductRegister} />
+      <ProductStack.Screen name="ProductForm" component={ProductForm} />
     </ProductStack.Navigator>
   );
 }

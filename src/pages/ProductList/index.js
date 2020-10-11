@@ -35,7 +35,7 @@ function ProductList({ products, watchProducts }) {
         numColumns={2}
       />
 
-      <AddButton iconName={"shoppingcart"} label={"Novo produto"} onNavigate={() => {navigate("ProductRegister")}} />
+      <AddButton iconName={"shoppingcart"} label={"Novo produto"} onNavigate={() => {navigate("ProductForm")}} />
     </View>
   );
 }

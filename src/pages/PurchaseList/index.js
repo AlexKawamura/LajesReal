@@ -20,7 +20,7 @@ function PurchaseList({route}) {
         data={client.purchases}
         renderItem={
           ({ item }) => {
-            return <PurchaseItem item={item} onNavigate={() => navigate('PurchaseEdit')} />
+            return <PurchaseItem item={item} onNavigate={() => navigate('PurchaseRegister')} />
           }
         }
         keyExtractor={(item) => item.id.toString() }

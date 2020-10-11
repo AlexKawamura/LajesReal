@@ -1,28 +1,68 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
-import { FontAwesome } from '@expo/vector-icons';
+import { Ionicons } from '@expo/vector-icons';
 import { useNavigation } from '@react-navigation/native';
-import { View, TextInput, Button, Image, ActivityIndicator } from 'react-native';
+import { Text, View, TextInput, Button, Image, ActivityIndicator, Alert, TouchableOpacity } from 'react-native';
 
-import { setField, saveClient } from '../../actions';
+import { setField, saveClient, resetForm, setAllFields } from '../../actions';
 
 import FormRow from '../../components/FormRow';
 import FormContainer from '../../components/FormContainer';
 
 import styles from './styles';
 
-function ClientRegister({clientForm, setField, saveClient}) {
+function ClientRegister({route, clientForm, setField, saveClient, setAllFields, resetForm}) {
   const { goBack } = useNavigation();
   const [loading, setLoading] = useState(false);
+
+  useEffect(() => {
+    if(route.params) {
+      setAllFields(route.params);
+    } else {
+      resetForm();
+    }
+  }, []);
+
+  function renderButton() {
+    if(route.params) {
+      return (
+        <View style={styles.groupButton}>
+          <TouchableOpacity style={styles.buttonRegister}>
+            <Text style={styles.textButton}>Salvar</Text>
+          </TouchableOpacity>
+          <TouchableOpacity style={styles.buttonDelete}>
+            <Ionicons name="md-trash" size={24} color="#1B262C" />
+          </TouchableOpacity>
+        </View>
+      );
+    }
+
+    return (
+      <Button
+        title="Cadastrar"
+        color="#1B262C"
+        onPress={async () => {
+          setLoading(true);
+          try {
+            await saveClient(clientForm);
+            goBack();
+          } catch (error) {
+            Alert.alert('Error', error.message);
+          } finally {
+            setLoading(false);
+          }
+        }}
+      />
+    );
+  }
 
   return (
     <View style={styles.container}>
       <FormContainer>
-        <View style={styles.addAvatar}>
-          <FontAwesome style={styles.avatarIcon} name="user-circle-o" size={120} color="black" />
-          {/* <Image source={{ uri: "https://avatars1.githubusercontent.com/u/22474655?s=460&u=b14af544d098b4ada62f67feace43d51e7a7a1ca&v=4" }} style={styles.avatar} /> */}
-          <Button title='Alterar foto' />
-        </View>
+          <Image source={{ uri: clientForm.avatar }} style={styles.avatar} />
+          <View style={styles.alterPictureButton}>
+            <Button title='Alterar foto' />
+          </View>
 
         <FormRow label="Nome:">
           <TextInput
@@ -81,24 +121,7 @@ function ClientRegister({clientForm, setField, saveClient}) {
         </View>
 
         <View style={styles.loginButton}>
-        {loading
-              ? <ActivityIndicator /> 
-              : <Button
-                title="Cadastrar"
-                color="#1B262C"
-                onPress={async () => {
-                  setLoading(true);
-                  try {
-                    await saveClient(clientForm);
-                    goBack();
-                  } catch (error) {
-                    Alert.alert('Error', error.message);
-                  } finally {
-                    setLoading(false);
-                  }
-                }}
-              />
-            }
+        { loading ? <ActivityIndicator /> : renderButton() }
         </View>
       </FormContainer>
     </View>
@@ -113,7 +136,9 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = {
   setField,
-  saveClient
+  saveClient,
+  setAllFields,
+  resetForm
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(ClientRegister);

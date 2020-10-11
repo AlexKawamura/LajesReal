@@ -8,7 +8,7 @@ import FormContainer from '../../components/FormContainer';
 import styles from './styles';
 
 function ProductDetail({route}) {
-  const { navigate } = useNavigation();
+  const { replace } = useNavigation();
   const product = route.params;
 
   return (
@@ -31,9 +31,9 @@ function ProductDetail({route}) {
             </View>
 
             <View style={styles.editButton}>
-              <Button title='Editar' onPress={() => {navigate('ProductEdit', product)}} /> 
+              <Button title='Editar' onPress={() => {replace('ProductForm', product)}} />
             </View>
-          </View>        
+          </View>
         </FormContainer>
       </View>
   );
