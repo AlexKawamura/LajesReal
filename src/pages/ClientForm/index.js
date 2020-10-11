@@ -4,7 +4,7 @@ import { Ionicons } from '@expo/vector-icons';
 import { useNavigation } from '@react-navigation/native';
 import { Text, View, TextInput, Button, Image, ActivityIndicator, Alert, TouchableOpacity } from 'react-native';
 
-import { setField, saveClient, resetForm, setAllFields } from '../../actions';
+import { setField, saveClient, resetForm, setAllFields, deleteClient } from '../../actions';
 
 import FormRow from '../../components/FormRow';
 import FormContainer from '../../components/FormContainer';
@@ -17,7 +17,8 @@ function ClientRegister({
   setField,
   saveClient,
   setAllFields,
-  resetForm
+  resetForm,
+  deleteClient
 }) {
   const { goBack } = useNavigation();
   const [loading, setLoading] = useState(false);
@@ -50,7 +51,16 @@ function ClientRegister({
           >
             <Text style={styles.textButton}>Salvar</Text>
           </TouchableOpacity>
-          <TouchableOpacity style={styles.buttonDelete}>
+          <TouchableOpacity
+            style={styles.buttonDelete}
+            onPress={async () => {
+              const hasDeleted = await deleteClient(clientForm);
+
+              if(hasDeleted) {
+                goBack();
+              }
+            }}
+          >
             <Ionicons name="md-trash" size={24} color="#1B262C" />
           </TouchableOpacity>
         </View>
@@ -158,7 +168,8 @@ const mapDispatchToProps = {
   setField,
   saveClient,
   setAllFields,
-  resetForm
+  resetForm,
+  deleteClient
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(ClientRegister);

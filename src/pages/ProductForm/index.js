@@ -8,7 +8,7 @@ import { View, Text, Image, TextInput, Button, ActivityIndicator, Alert, Touchab
 import FormRow from '../../components/FormRow';
 import FormContainer from '../../components/FormContainer';
 
-import { setField, saveProduct, resetForm, setAllFields } from '../../actions';
+import { setField, saveProduct, resetForm, setAllFields, deleteProduct } from '../../actions';
 
 import styles from './styles';
 
@@ -18,7 +18,8 @@ function ProductRegister({
   setField,
   saveProduct,
   resetForm,
-  setAllFields
+  setAllFields,
+  deleteProduct
 }) {
   const { goBack } = useNavigation();
   const [loading, setLoading] = useState(false);
@@ -35,26 +36,35 @@ function ProductRegister({
     if(route.params) {
       return (
         <View style={styles.groupButton}>
-            <TouchableOpacity
-              style={styles.buttonRegister}
-              onPress={async () => {
-                setLoading(true);
-                try {
-                  await saveProduct(productForm);
-                  goBack();
-                } catch (error) {
-                  Alert.alert('Error', error.message);
-                } finally {
-                  setLoading(false);
-                }
-              }}
-            >
-              <Text style={styles.textButton}>Salvar</Text>
-            </TouchableOpacity>
-            <TouchableOpacity style={styles.buttonDelete}>
-              <Ionicons name="md-trash" size={24} color="#1B262C" />
-            </TouchableOpacity>
-          </View>
+          <TouchableOpacity
+            style={styles.buttonRegister}
+            onPress={async () => {
+              setLoading(true);
+              try {
+                await saveProduct(productForm);
+                goBack();
+              } catch (error) {
+                Alert.alert('Error', error.message);
+              } finally {
+                setLoading(false);
+              }
+            }}
+          >
+            <Text style={styles.textButton}>Salvar</Text>
+          </TouchableOpacity>
+          <TouchableOpacity
+            style={styles.buttonDelete}
+            onPress={async () => {
+              const hasDeleted = await deleteProduct(productForm);
+
+              if(hasDeleted) {
+                goBack();
+              }
+            }}
+          >
+            <Ionicons name="md-trash" size={24} color="#1B262C" />
+          </TouchableOpacity>
+        </View>
       );
     }
     
@@ -148,7 +158,8 @@ const mapDispatchToProps = {
   setField,
   saveProduct,
   resetForm,
-  setAllFields
+  setAllFields,
+  deleteProduct
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(ProductRegister);
