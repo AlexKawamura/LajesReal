@@ -11,7 +11,14 @@ import FormContainer from '../../components/FormContainer';
 
 import styles from './styles';
 
-function ClientRegister({route, clientForm, setField, saveClient, setAllFields, resetForm}) {
+function ClientRegister({
+  route,
+  clientForm,
+  setField,
+  saveClient,
+  setAllFields,
+  resetForm
+}) {
   const { goBack } = useNavigation();
   const [loading, setLoading] = useState(false);
 
@@ -27,7 +34,20 @@ function ClientRegister({route, clientForm, setField, saveClient, setAllFields, 
     if(route.params) {
       return (
         <View style={styles.groupButton}>
-          <TouchableOpacity style={styles.buttonRegister}>
+          <TouchableOpacity
+            style={styles.buttonRegister}
+            onPress={async () => {
+              setLoading(true);
+              try {
+                await saveClient(clientForm);
+                goBack();
+              } catch (error) {
+                Alert.alert('Error', error.message);
+              } finally {
+                setLoading(false);
+              }
+            }}
+          >
             <Text style={styles.textButton}>Salvar</Text>
           </TouchableOpacity>
           <TouchableOpacity style={styles.buttonDelete}>

@@ -3,7 +3,11 @@ import { resetForm } from './setFormFieldActions';
 
 export const saveClient = client => {
   return async dispatch => {
-    await firebase.database().ref('/clients').push(client);
+    if (client.id) {
+      await firebase.database().ref(`/clients/${client.id}`).set(client);
+    } else {
+      await firebase.database().ref('/clients').push(client);
+    }
 
     dispatch(resetForm());
   };

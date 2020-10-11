@@ -35,7 +35,20 @@ function ProductRegister({
     if(route.params) {
       return (
         <View style={styles.groupButton}>
-            <TouchableOpacity style={styles.buttonRegister}>
+            <TouchableOpacity
+              style={styles.buttonRegister}
+              onPress={async () => {
+                setLoading(true);
+                try {
+                  await saveProduct(productForm);
+                  goBack();
+                } catch (error) {
+                  Alert.alert('Error', error.message);
+                } finally {
+                  setLoading(false);
+                }
+              }}
+            >
               <Text style={styles.textButton}>Salvar</Text>
             </TouchableOpacity>
             <TouchableOpacity style={styles.buttonDelete}>

@@ -1,6 +1,7 @@
-import { EMPTY_FIELDS, SET_FIELD, SET_ALL_FIELDS, RESET_FORM } from '../actions';
+import { SET_FIELD, SET_ALL_FIELDS, RESET_FORM } from '../actions';
 
 const INITIAL_STATE = {
+  id: null,
   productName: '',
   stored: 0,
   price: '',
