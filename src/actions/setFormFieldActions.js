@@ -13,3 +13,14 @@ export const emptyFields = () => {
     type: EMPTY_FIELDS,
   }
 }
+
+export const SET_ALL_FIELDS = 'SET_ALL_FIELDS';
+export const setAllFields = item => ({
+  type: SET_ALL_FIELDS,
+  item: item
+});
+
+export const RESET_FORM = 'RESET_FORM';
+export const resetForm = () => ({
+  type: RESET_FORM
+});
