@@ -7,7 +7,7 @@ import Login from '../pages/Login';
 import ClientsList from '../pages/ClientsList';
 import ClientForm from '../pages/ClientForm';
 import PurchaseList from '../pages/PurchaseList';
-import PurchaseRegister from '../pages/PurchaseRegister';
+import PurchaseForm from '../pages/PurchaseForm';
 import ProductList from '../pages/ProductList';
 import ProductDetail from '../pages/ProductDetail';
 import ProductForm from '../pages/ProductForm';
@@ -54,7 +54,7 @@ function ClientStackNavigator() {
       <ClientStack.Screen name="ClientsList" component={ClientsList} />
       <ClientStack.Screen name="ClientForm" component={ClientForm} />
       <ClientStack.Screen name="PurchaseList" component={PurchaseList} />
-      <ClientStack.Screen name="PurchaseRegister" component={PurchaseRegister} />
+      <ClientStack.Screen name="PurchaseForm" component={PurchaseForm} />
     </ClientStack.Navigator>
   );
 }

@@ -18,7 +18,7 @@ const styles = StyleSheet.create({
   },
 
   infos: {
-    width: '60%'
+    width: '90%'
   },
 
   id: {

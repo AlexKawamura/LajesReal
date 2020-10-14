@@ -8,7 +8,8 @@ const INITIAL_STATE = {
   phone: '',
   address: '',
   city: '',
-  uf: ''
+  uf: '',
+  purchases: {}
 }
 
 export default function(state = INITIAL_STATE, action) {
