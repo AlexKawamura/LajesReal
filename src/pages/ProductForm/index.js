@@ -1,6 +1,7 @@
 import { connect } from 'react-redux';
 import { Ionicons } from '@expo/vector-icons';
 import { Camera } from 'expo-camera';
+import * as ImagePicker from 'expo-image-picker';
 import React, { useState, useEffect, useRef } from 'react';
 import Slider from '@react-native-community/slider';
 import { useNavigation } from '@react-navigation/native';
@@ -113,6 +114,29 @@ function ProductRegister({
     }
   }
 
+  async function selectImageFromGallery() {
+    const { status } = await ImagePicker.requestCameraRollPermissionsAsync();
+
+    if (status !== 'granted') {
+      alert('O app precisa de permissão para acessar a galeria.');
+      return;
+    }
+
+    const options = {
+      allowEditing: true,
+      quality: 0.5,
+      base64: true,
+      mediaTypes: ImagePicker.MediaTypeOptions.Images,
+    }
+    const data = await ImagePicker.launchImageLibraryAsync(options);
+
+    if (data.cancelled) {
+      return;
+    }
+
+    setField('pictureURL', data.base64);
+  }
+
   if (camera) {
     if (hasPermission === false) {
       return <View />;
@@ -138,7 +162,23 @@ function ProductRegister({
           <Image source={{ uri: `data:image/jpeg;base64,${productForm.pictureURL}` }} style={styles.picture} />
         ) : null }
         <View style={styles.alterPictureButton}>
-          <Button title='Alterar foto' onPress={() => setCamera(true)} />
+          <Button title='Alterar imagem' onPress={() => {
+            Alert.alert(
+              'Imagem do produto',
+              'Como deseja escolher uma imagem para o produto?',
+              [
+                {
+                  text: 'Câmera',
+                  onPress: () => setCamera(true),
+                },
+                {
+                  text: 'Galeria',
+                  onPress: () => selectImageFromGallery(),
+                }
+              ],
+              { cancelable: true }
+            );
+          }} />
         </View>
         <FormRow label="Nome:">
             <TextInput
