@@ -159,7 +159,7 @@ function ProductRegister({
         <View style={styles.alterPictureButton}>
           <Button title='Alterar imagem' onPress={() => {
             Alert.alert(
-              'Imagem do produto',
+              'Foto do produto',
               'Como deseja escolher uma imagem para o produto?',
               [
                 {

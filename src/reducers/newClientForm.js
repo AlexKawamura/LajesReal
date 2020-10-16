@@ -9,7 +9,8 @@ const INITIAL_STATE = {
   address: '',
   city: '',
   uf: '',
-  purchases: {}
+  purchases: {},
+  avatar: ''
 }
 
 export default function(state = INITIAL_STATE, action) {
