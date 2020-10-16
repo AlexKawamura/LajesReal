@@ -15,7 +15,7 @@ function ProductDetail({route}) {
       <View style={styles.container}>
         <FormContainer>
           <View style={styles.details}>
-            <Image source={{ uri: product.pictureURL }} style={styles.avatar} />
+            <Image source={{ uri: `data:image/jpeg;base64,${product.pictureURL}` }} style={styles.avatar} />
 
             <View style={styles.infos}>
               <Text style={styles.name}>{product.productName}</Text>

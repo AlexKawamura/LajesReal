@@ -9,7 +9,7 @@ const ProductCard = ({ product, onNavigate }) => (
     <View style={styles.card}>
       <Image
         style={styles.picture}
-        source={{ uri: product.pictureURL }}
+        source={{ uri: `data:image/jpeg;base64,${product.pictureURL}` }}
         aspectRatio={1}
         resizeMode="cover"
       />
