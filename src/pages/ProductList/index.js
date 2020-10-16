@@ -1,7 +1,7 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { connect } from 'react-redux';
 import { View, FlatList, ActivityIndicator } from 'react-native';
-import { useNavigation } from '@react-navigation/native'
+import { useFocusEffect, useNavigation } from '@react-navigation/native'
 
 import AddButton from '../../components/AddButton';
 import ProductCard from '../../components/ProductCard';
@@ -13,29 +13,31 @@ import styles from './styles';
 function ProductList({ products, watchProducts }) {
   const { navigate } = useNavigation();
 
-  useEffect(() => {
+  useFocusEffect(() => {
     watchProducts();
   }, []);
 
-  if (products === null) {
-    return <ActivityIndicator />
-  }
-
   return(
     <View style={styles.container}>
-      <FlatList
-        style={styles.productList}
-        data={products}
-        renderItem={({item}) => {
-          return (
-            <ProductCard product={item} onNavigate={() => navigate('ProductDetail', item)} />
-          );
-        }}
-        keyExtractor={item => item.id.toString()}
-        numColumns={2}
-      />
+      { products ? (
+        <FlatList
+          style={styles.productList}
+          data={products}
+          renderItem={({item}) => {
+            return (
+              <ProductCard product={item} onNavigate={() => navigate('ProductDetail', item)} />
+            );
+          }}
+          keyExtractor={item => item.id.toString()}
+          numColumns={2}
+        />
+      ) : <ActivityIndicator /> }
 
-      <AddButton iconName={"shoppingcart"} label={"Novo produto"} onNavigate={() => {navigate("ProductForm")}} />
+      <AddButton
+        iconName={"shoppingcart"}
+        label={"Novo produto"}
+        onNavigate={() => {navigate("ProductForm")}}
+      />
     </View>
   );
 }

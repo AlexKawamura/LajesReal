@@ -1,7 +1,7 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { connect } from 'react-redux';
 import { View, FlatList, ActivityIndicator } from 'react-native';
-import { useNavigation } from '@react-navigation/native'
+import { useFocusEffect, useNavigation } from '@react-navigation/native'
 
 import ClientItem from '../../components/ClientItem';
 import AddButton from '../../components/AddButton';
@@ -13,26 +13,24 @@ import styles from './styles';
 function ClientsList({ clients, watchClients }) {
   const { navigate } = useNavigation();
 
-  useEffect(() => {
+  useFocusEffect(() => {
     watchClients();
   }, []);
 
-  if (clients === null) {
-    return <ActivityIndicator />
-  }
-
   return(
     <View style={styles.container}>
-      <FlatList
-        style={styles.clientsList}
-        data={clients}
-        renderItem={
-          ({ item }) => {
-            return <ClientItem client={item} />
+      { clients ? (
+        <FlatList
+          style={styles.clientsList}
+          data={clients}
+          renderItem={
+            ({ item }) => {
+              return <ClientItem client={item} />
+            }
           }
-        }
-        keyExtractor={(item) => item.cpf }
-      />
+          keyExtractor={(item) => item.cpf }
+        />
+      ) : <ActivityIndicator /> }
 
       <AddButton
         iconName={"adduser"}
