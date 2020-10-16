@@ -22,6 +22,15 @@ const styles = StyleSheet.create({
     paddingBottom: 10
   },
 
+  takePictureButton: {
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: '#000',
+    margin: 20,
+    borderRadius: 10,
+    height: 50
+  },
+
   textInput: {
     borderBottomWidth: 1,
     borderBottomColor: '#1B262C',

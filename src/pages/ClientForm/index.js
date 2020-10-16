@@ -1,6 +1,8 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { connect } from 'react-redux';
 import { Ionicons } from '@expo/vector-icons';
+import { Camera } from 'expo-camera';
+import * as ImagePicker from 'expo-image-picker';
 import { useNavigation } from '@react-navigation/native';
 import { Text, View, TextInput, Button, Image, ActivityIndicator, Alert, TouchableOpacity } from 'react-native';
 
@@ -21,7 +23,10 @@ function ClientRegister({
   deleteClient
 }) {
   const { goBack } = useNavigation();
+  const camRef = useRef(null);
   const [loading, setLoading] = useState(false);
+  const [camera, setCamera] = useState(false);
+  const [hasPermission, setHasPermission] = useState(false);
 
   useEffect(() => {
     if(route.params) {
@@ -86,12 +91,94 @@ function ClientRegister({
     );
   }
 
+  async function takePicture() {
+    if(camRef) {
+      const options = {
+        quality: 0.5,
+        base64: true,
+        forceUpOrientation: true,
+        fixOrientation: true
+      }
+      const data = await camRef.current.takePictureAsync(options);
+
+      if (data) {
+        setField('avatar', data.base64);
+        setCamera(false);
+      }
+    }
+  }
+
+  async function selectImageFromGallery() {
+    const { status } = await ImagePicker.requestCameraRollPermissionsAsync();
+
+    if (status !== 'granted') {
+      alert('O app precisa de permissão para acessar a galeria.');
+      return;
+    }
+
+    const options = {
+      allowEditing: true,
+      quality: 0.5,
+      base64: true,
+      mediaTypes: ImagePicker.MediaTypeOptions.Images,
+    }
+    const data = await ImagePicker.launchImageLibraryAsync(options);
+
+    if (data.cancelled) {
+      return;
+    }
+
+    setField('avatar', data.base64);
+  }
+
+  if (camera) {
+    if (hasPermission === false) {
+      return <View />;
+    }
+    return (
+      <View style={{ flex: 1 }}>
+        <Camera style={{ flex: 1 }}
+          type={Camera.Constants.Type.back}
+          ref={camRef}>
+        </Camera>
+
+        <TouchableOpacity style={styles.takePictureButton} onPress={takePicture}>
+          <Text style={{ color: '#FFF' }}>Tirar foto</Text>
+        </TouchableOpacity>
+      </View>
+    );
+  }
+
   return (
     <View style={styles.container}>
       <FormContainer>
-          <Image source={{ uri: clientForm.avatar }} style={styles.avatar} />
+          { clientForm.avatar ? (
+            <Image source={{ uri: `data:image/jpeg;base64,${clientForm.avatar}` }} style={styles.avatar} />
+          ) : null }
           <View style={styles.alterPictureButton}>
-            <Button title='Alterar foto' />
+            <Button title='Alterar foto' onPress={() => {
+              Alert.alert(
+                'Foto do cliente',
+                'Como deseja adicionar uma foto do cliente?',
+                [
+                  {
+                    text: 'Câmera',
+                    onPress: async () => {
+                      const { status } = await Camera.requestPermissionsAsync();
+                      setHasPermission(status === 'granted');
+
+                      setCamera(true);
+                    },
+                  },
+                  {
+                    text: 'Galeria',
+                    onPress: () => selectImageFromGallery(),
+                  }
+                ],
+                { cancelable: true }
+              );
+            }}
+          />
           </View>
 
         <FormRow label="Nome:">

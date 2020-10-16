@@ -13,7 +13,7 @@ function ClientItem({ client }) {
     <View style={styles.container}>
       <BorderlessButton onPress={() => navigate('ClientForm', client)}>
         <View style={styles.profile}>
-          <Image source={{ uri: client.avatar }} style={styles.avatar} />
+          <Image source={{ uri: `data:imagem/jpeg;base64,${client.avatar}` }} style={styles.avatar} />
 
           <View style={styles.profileInfo}>
             <Text style={styles.name}>{client.name}</Text>
