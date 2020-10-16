@@ -5,7 +5,8 @@ const INITIAL_STATE = {
   productName: '',
   stored: 0,
   price: '',
-  description: ''
+  description: '',
+  pictureURL: ''
 }
 
 export default function(state = INITIAL_STATE, action) {

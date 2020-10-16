@@ -13,13 +13,22 @@ const styles = StyleSheet.create({
     borderRadius: 50,
     borderWidth: 1,
     borderColor: '#E6E6F0',
-    alignSelf: 'center'
+    alignSelf: 'center',
   },
 
   alterPictureButton: {
     marginLeft: 50,
     marginRight: 50,
     paddingBottom: 10
+  },
+
+  takePictureButton: {
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: '#000',
+    margin: 20,
+    borderRadius: 10,
+    height: 50
   },
 
   textInput: {

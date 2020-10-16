@@ -1,6 +1,7 @@
 import { connect } from 'react-redux';
 import { Ionicons } from '@expo/vector-icons';
-import React, { useState, useEffect } from 'react';
+import { Camera } from 'expo-camera';
+import React, { useState, useEffect, useRef } from 'react';
 import Slider from '@react-native-community/slider';
 import { useNavigation } from '@react-navigation/native';
 import { View, Text, Image, TextInput, Button, ActivityIndicator, Alert, TouchableOpacity } from 'react-native';
@@ -22,9 +23,17 @@ function ProductRegister({
   deleteProduct
 }) {
   const { goBack } = useNavigation();
+  const camRef = useRef(null);
   const [loading, setLoading] = useState(false);
+  const [camera, setCamera] = useState(false);
+  const [hasPermission, setHasPermission] = useState(false);
 
   useEffect(() => {
+    (async () => {
+      const { status } = await Camera.requestPermissionsAsync();
+      setHasPermission(status === 'granted');
+    })();
+
     if(route.params) {
       setAllFields(route.params);
     } else {
@@ -87,12 +96,49 @@ function ProductRegister({
     );
   }
 
+  async function takePicture() {
+    if(camRef) {
+      const options = {
+        quality: 0.5,
+        base64: true,
+        forceUpOrientation: true,
+        fixOrientation: true
+      }
+      const data = await camRef.current.takePictureAsync(options);
+
+      if (data) {
+        setField('pictureURL', data.base64);
+        setCamera(false);
+      }
+    }
+  }
+
+  if (camera) {
+    if (hasPermission === false) {
+      return <View />;
+    }
+    return (
+      <View style={{ flex: 1 }}>
+        <Camera style={{ flex: 1 }}
+          type={Camera.Constants.Type.back}
+          ref={camRef}>
+        </Camera>
+
+        <TouchableOpacity style={styles.takePictureButton} onPress={takePicture}>
+          <Text style={{ color: '#FFF' }}>Tirar foto</Text>
+        </TouchableOpacity>
+      </View>
+    );
+  }
+
   return (
     <View style={styles.container}>
       <FormContainer>
-        <Image source={{ uri: productForm.pictureURL }} style={styles.picture} />
+        { productForm.pictureURL ? (
+          <Image source={{ uri: `data:image/jpeg;base64,${productForm.pictureURL}` }} style={styles.picture} />
+        ) : null }
         <View style={styles.alterPictureButton}>
-          <Button title='Alterar foto' />
+          <Button title='Alterar foto' onPress={() => setCamera(true)} />
         </View>
         <FormRow label="Nome:">
             <TextInput
