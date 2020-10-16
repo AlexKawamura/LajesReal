@@ -30,11 +30,6 @@ function ProductRegister({
   const [hasPermission, setHasPermission] = useState(false);
 
   useEffect(() => {
-    (async () => {
-      const { status } = await Camera.requestPermissionsAsync();
-      setHasPermission(status === 'granted');
-    })();
-
     if(route.params) {
       setAllFields(route.params);
     } else {
@@ -169,7 +164,12 @@ function ProductRegister({
               [
                 {
                   text: 'Câmera',
-                  onPress: () => setCamera(true),
+                  onPress: async () => {
+                    const { status } = await Camera.requestPermissionsAsync();
+                    setHasPermission(status === 'granted');
+
+                    setCamera(true);
+                  },
                 },
                 {
                   text: 'Galeria',
