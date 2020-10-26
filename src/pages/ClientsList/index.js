@@ -1,7 +1,7 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 import { View, FlatList, ActivityIndicator } from 'react-native';
-import { useFocusEffect, useNavigation } from '@react-navigation/native'
+import { useNavigation } from '@react-navigation/native'
 
 import ClientItem from '../../components/ClientItem';
 import AddButton from '../../components/AddButton';
@@ -13,7 +13,7 @@ import styles from './styles';
 function ClientsList({ clients, watchClients }) {
   const { navigate } = useNavigation();
 
-  useFocusEffect(() => {
+  useEffect(() => {
     watchClients();
   }, []);
 

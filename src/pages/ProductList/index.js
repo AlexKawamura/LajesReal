@@ -1,7 +1,7 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 import { View, FlatList, ActivityIndicator } from 'react-native';
-import { useFocusEffect, useNavigation } from '@react-navigation/native'
+import { useNavigation } from '@react-navigation/native'
 
 import AddButton from '../../components/AddButton';
 import ProductCard from '../../components/ProductCard';
@@ -13,7 +13,7 @@ import styles from './styles';
 function ProductList({ products, watchProducts }) {
   const { navigate } = useNavigation();
 
-  useFocusEffect(() => {
+  useEffect(() => {
     watchProducts();
   }, []);
 
